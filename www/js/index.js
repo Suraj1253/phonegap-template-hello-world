@@ -1,41 +1,17 @@
+document.addEventListener('deviceready', onDeviceReady, false);
 
-document.addEventListener('deviceready', onMyDeviceReady, false);
+function onDeviceReady() {
+    //get the default -accelerometere
+    var options = {frequency: 3000}
+    //navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+    navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    function onSuccess(acc) {
+        document.getElementById('x-axis').value = acc.x;
+        document.getElementById('y-axis').value = acc.y;
+        document.getElementById('z-axis').value = acc.z;
+    }
 
-function onMyDeviceReady() {
-    
-    document.getElementById('message').innerHTML= 'Welcome to Cross Platform App development';
+    function onError(params){
 
+    }
 }
-
-document.addEventListener('pause', onPause, false);
-
-function onPause(){
-         alert('OnPause function is called');
-}
-
-document.addEventListener('resume', onResume, false);
-
-function onResume(){
-         alert('OnResume function is called');
-}
-
-document.addEventListener('Backbutton', onPressingBackbutton, false);
-
-function onPressingBackbutton(e) {
-         e.preventDefault();
-         alert('onPressingBackButton function is called');
-}
-
-document.addEventListener('menubutton', onMenubuttonPressed, false);
-
-function onmenubuttonPressed(e) {
-         alert('onmenubuttonPressed function is called');
-}
-
-document.addEventListener('searchbutton', onsearchbutton, false);
-
-function onsearchbutton(e) {
-         console.log('This is search button event');
-}
-
-
